@@ -22,12 +22,14 @@
 
 <style lang="sass">
   @import "sass/config"
-  body,dd,dl
+  body,dd,dl,p
     margin: 0px
     padding: 0px
   input,button
     outline: none
     border: none
+  input:-webkit-autofill
+    background: none
   a
     text-decoration: none
     color: #2c3e50

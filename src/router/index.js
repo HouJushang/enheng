@@ -5,6 +5,8 @@ import Login from '../page/loginPage.vue'
 import Register from '../page/registerPage.vue'
 import Personal from '../page/personalPage.vue'
 import nPersonal from '../page/npersonalPage.vue'
+import About from '../page/aboutPage.vue'
+import Contact from '../page/contact.vue'
 
 Vue.use(Router)
 
@@ -34,6 +36,16 @@ export default new Router({
       path: '/npersonal',
       name: 'npersonal',
       component: nPersonal
+    },
+    {
+      path: '/about',
+      name: 'about',
+      component: About
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: Contact
     }
   ]
 })
