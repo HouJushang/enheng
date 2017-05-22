@@ -2,21 +2,21 @@
   <section class="indexPage">
     <dl class="loginForm">
       <dd>
-        <span>帐号</span><input type="text" v-model="LoginForm.username" placeholder="账户编号">
+        <span>帐号</span><input type="text" v-model="TraderAccountForm.account" placeholder="账户编号">
       </dd>
       <dd>
-        <span>密码</span><input type="password" v-model="LoginForm.password" placeholder="账户密码">
+        <span>密码</span><input type="password" v-model="TraderAccountForm.password" placeholder="账户密码">
       </dd>
       <dd>
-        <span>验证码</span><input type="text" v-model="form.smscode" placeholder="请输入验证码">
+        <span>验证码</span><input type="text" v-model="TraderAccountForm.smscode" placeholder="请输入验证码">
         <div>
           <button @click="send">{{smsBtn.font}}</button>
         </div>
       </dd>
     </dl>
-    <button class="formBtn" @click="onSubmit">登录</button>
+    <button class="formBtn" @click="onSubmit">绑定</button>
     <div class="toRigister">
-      <router-link :to="{name:'bindAccount'}">去开户</router-link>
+      <router-link :to="{name:'openAccount'}">去开户</router-link>
     </div>
   </section>
 </template>
@@ -45,14 +45,16 @@
     methods: {
       onSubmit () {
         postRequest({
-          url: 'site/login',
+          url: `account/bind-trader-account?accessToken=${sessionStorage.getItem('access_token')}`,
           data: {
-            LoginForm: this.LoginForm
+            LoginForm: this.TraderAccountForm
           }
         }).then(e => {
-          sessionStorage.setItem('access_token', e.access_token)
-          this.$router.push({name: 'personal'})
+          this.$router.push({name: 'index'})
         })
+      },
+      send () {
+        console.log(1)
       }
     },
     components: {}
@@ -66,9 +68,11 @@
     .loginForm
       background-color: #fff
       margin-top: 15px
+      border-top: 1px solid #dfdfdf
       dd
         height: 35px
         display: flex
+        border-bottom: 1px solid #dfdfdf
         span
           width: 60px
           text-align: center
@@ -76,8 +80,15 @@
           line-height: 36px
         input
           flex-grow: 1
-      dd:first-child
-        border-bottom: 1px solid #dfdfdf
+        button
+          display: block
+          height: 28px
+          float: right
+          width: 80px
+          margin: 4px 5px 0px 0px
+          background-color: $themeColor
+          color: #fff
+          border-radius: 3px
     .formBtn
       display: block
       width: 90%

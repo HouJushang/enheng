@@ -10,7 +10,7 @@
     </dl>
     <button class="formBtn" @click="onSubmit">登录</button>
     <div class="toRigister">
-      <router-link :to="{name:'register'}">去开户</router-link>
+      <router-link :to="{name:'register'}">去注册</router-link>
     </div>
   </section>
 </template>

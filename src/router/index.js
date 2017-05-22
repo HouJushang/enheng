@@ -37,7 +37,7 @@ export default new Router({
     {
       path: '/bindaccount',
       name: 'bindAccount',
-      compoent: BindAccount
+      component: BindAccount
     },
     {
       path: '/personal',
