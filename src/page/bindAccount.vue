@@ -2,15 +2,21 @@
   <section class="indexPage">
     <dl class="loginForm">
       <dd>
-        <span>帐号</span><input type="text" v-model="LoginForm.username" placeholder="请输入手机号">
+        <span>帐号</span><input type="text" v-model="LoginForm.username" placeholder="账户编号">
       </dd>
       <dd>
-        <span>密码</span><input type="password" v-model="LoginForm.password" placeholder="请输入密码">
+        <span>密码</span><input type="password" v-model="LoginForm.password" placeholder="账户密码">
+      </dd>
+      <dd>
+        <span>验证码</span><input type="text" v-model="form.smscode" placeholder="请输入验证码">
+        <div>
+          <button @click="send">{{smsBtn.font}}</button>
+        </div>
       </dd>
     </dl>
     <button class="formBtn" @click="onSubmit">登录</button>
     <div class="toRigister">
-      <router-link :to="{name:'register'}">去开户</router-link>
+      <router-link :to="{name:'bindAccount'}">去开户</router-link>
     </div>
   </section>
 </template>
@@ -18,17 +24,22 @@
   import pageInfo from '../data/pageInfo'
   import {postRequest} from '../util/request'
   export default {
-    name: 'index',
+    name: 'bindAccount',
     data () {
       return {
-        LoginForm: {
-          username: '',
-          password: ''
+        smsBtn: {
+          font: '获取验证码',
+          isClick: true
+        },
+        TraderAccountForm: {
+          account: '',
+          password: '',
+          smscode: ''
         }
       }
     },
     mounted () {
-      pageInfo.header.title = '登录'
+      pageInfo.header.title = '绑定账户'
       pageInfo.header.back = true
     },
     methods: {

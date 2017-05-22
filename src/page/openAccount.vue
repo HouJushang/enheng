@@ -2,19 +2,19 @@
   <section class="registerPage">
     <dl class="registerForm">
       <dd>
-        <span>帐号</span><input type="text" v-model="form.mobile" placeholder="请输入手机号">
+        <span>帐号</span><input type="text" v-model="TraderAccountForm.account" placeholder="账户编号">
       </dd>
       <dd>
-        <span>验证码</span><input type="text" v-model="form.smscode" placeholder="请输入验证码">
+        <span>验证码</span><input type="text" v-model="TraderAccountForm.smscode" placeholder="请输入验证码">
         <div>
           <button @click="send">{{smsBtn.font}}</button>
         </div>
       </dd>
       <dd>
-        <span>密码</span><input type="password" v-model="form.password" placeholder="请输入密码">
+        <span>密码</span><input type="password" v-model="TraderAccountForm.password" placeholder="请输入密码">
       </dd>
       <dd>
-        <span>确认密码</span><input type="password" v-model="form.rpassword" placeholder="重复密码">
+        <span>确认密码</span><input type="password" v-model="TraderAccountForm.rpassword" placeholder="重复密码">
       </dd>
     </dl>
     <button class="formBtn" @click="submit">提交</button>
@@ -24,14 +24,14 @@
   import pageInfo from '../data/pageInfo'
   import {postRequest} from '../util/request'
   export default {
-    name: 'register',
+    name: 'openAccount',
     data () {
       return {
-        form: {
-          mobile: '',
-          smscode: '',
+        TraderAccountForm: {
+          account: '',
           password: '',
-          rpassword: ''
+          rpassword: '',
+          smscode: ''
         },
         smsBtn: {
           font: '获取验证码',
@@ -53,17 +53,17 @@
       },
       submit () {
         postRequest({
-          url: 'site/signup',
+          url: `account/add-trader-account?accessToken=${sessionStorage.getItem('access_token')}`,
           data: {
-            SignupForm: this.form
+            TraderAccountForm: this.TraderAccountForm
           }
         }).then(e => {
-          this.$router.push({name: 'login'})
+          this.$router.push({name: 'index'})
         })
       }
     },
     mounted () {
-      pageInfo.header.title = '注册'
+      pageInfo.header.title = '开户'
       pageInfo.header.back = true
     },
     components: {}

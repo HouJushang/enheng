@@ -1,7 +1,9 @@
 <template>
   <section class="indexPage">
     <router-link :to="{name: 'login'}">登录</router-link>
-    <router-link :to="{name: 'register'}">去开户</router-link>
+    <router-link :to="{name: 'openAccount'}">去开户</router-link>
+    <router-link :to="{name: 'register'}">去注册</router-link>
+    <router-link :to="{name: 'bindAccount'}">绑定</router-link>
     <router-link :to="{name: 'npersonal'}">未登录个人中心</router-link>
     <router-link :to="{name: 'personal'}">个人中心</router-link>
   </section>

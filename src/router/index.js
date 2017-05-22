@@ -7,6 +7,8 @@ import Personal from '../page/personalPage.vue'
 import nPersonal from '../page/npersonalPage.vue'
 import About from '../page/aboutPage.vue'
 import Contact from '../page/contact.vue'
+import OpenAccount from '../page/openAccount.vue'
+import BindAccount from '../page/bindAccount.vue'
 
 Vue.use(Router)
 
@@ -26,6 +28,16 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: Register
+    },
+    {
+      path: '/openaccount',
+      name: 'openAccount',
+      component: OpenAccount
+    },
+    {
+      path: '/bindaccount',
+      name: 'bindAccount',
+      compoent: BindAccount
     },
     {
       path: '/personal',
